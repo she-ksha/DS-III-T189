@@ -1,0 +1,11 @@
+ID,Title,Author,Year,Keywords,NumTags,Tags,NumAnnotations,Annotations,Filepath,Owner
+11,"Beyond the Image","Sameer K.",2023,"Floor Plan Generation, Diffusion Models, Performance Simulation, Daylight Analysis",0,1,"Discuss about simulation gap and gen ai.","D:\Mock\10g.pdf","sun"
+13,"Maths","Himani",2025,"Algebra,maths",0,0,"D:\oop\t1q2.pdf","Himani"
+7,"Demo","Nishtha",2024,"Generative Adversarial Networks(GANS)",0,1,"this is a paper","D:\mock\1a.docx","Nishtha"
+2," ArchGAN","Jasleen Kaur",2021,"Floor Plan Generation, Generative Adversarial Networks (GANs), pix2pix, Spatial Optimization",0,0,"D:\mock\2b.docx","jassi"
+6," ArchiMatter","Nishtha",2023,"Material Synthesis, Generative AI, MatterGen, Sustainability, Porous Structures, Data-Driven Design, AI-Driven Materials Discovery",0,0,"D:\mock\6f.docx","Nishtha"
+5,"Holistic Design Synthesis","Nishtha",2025,"Sustainable Design, Large Language Models (LLMs), BIM, Digital Twin, Circular Economy",0,0,"D:\mock\5c.docx","Nishtha"
+14,"Newpaper","Himani",2024,"new,data,paper",0,0,"D:\Mock\10g.pdf","Himani"
+12,"Enviroment","Himani",2023,"Nature,forest",0,0,"D:\Mock\7a.docx","Himani"
+4,"Data-Mechanics Co-Driven Networks","Himani",2020,"Structural Design, Generative AI, Human-in-the-Loop (HITL), Graph Neural Networks (GNNs)",0,0,"D:\mock\4d.docx","Himani"
+3,"LayoutDiffusion","Himani",2025," Diffusion Models (DDPM), Floor Plan Generation, Multi-Objective Optimization, Sustainability",0,1,"win","D:\mock\3c.docx","Himani"

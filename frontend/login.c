@@ -1,7 +1,5 @@
 #include "research_organizer.h"
 
-
-
 void on_switch_to_signup(GtkButton *button, GtkStack *stack) {
     gtk_stack_set_visible_child_name(stack, "signup_page");
 }
@@ -10,7 +8,9 @@ void on_switch_to_login(GtkButton *button, GtkStack *stack) {
     gtk_stack_set_visible_child_name(stack, "login_page");
 }
 
+// REPLACE the old on_login_btn_clicked with this:
 static void on_login_btn_clicked(GtkButton *button, GtkStack *stack) {
+    // --- This is the code I forgot to include ---
     GtkWidget *parent_grid = gtk_widget_get_parent(GTK_WIDGET(button));
     GtkWidget *username_entry = g_object_get_data(G_OBJECT(parent_grid), "username-entry");
     GtkWidget *password_entry = g_object_get_data(G_OBJECT(parent_grid), "password-entry");
@@ -18,18 +18,24 @@ static void on_login_btn_clicked(GtkButton *button, GtkStack *stack) {
 
     const gchar *username = gtk_entry_get_text(GTK_ENTRY(username_entry));
     const gchar *password = gtk_entry_get_text(GTK_ENTRY(password_entry));
+    // --- End of missing code ---
 
     if (authenticate_user(username, password)) {
         GtkWidget *login_window = gtk_widget_get_toplevel(GTK_WIDGET(stack));
-        
-        gtk_label_set_markup(GTK_LABEL(status_label), "<span foreground='green'>Login Successful! Redirecting...</span>");
-        
+
+        // 1. Create the main window
         create_main_app_window();
-        
+
+        // 3. Refresh the UI
+        update_paper_list(NULL);
+        refresh_dashboard_metrics();
+
+        // 4. Hide login and show main app
         gtk_widget_hide(login_window);
-        
+        gtk_widget_show_all(main_window);
+
     } else {
-        gtk_label_set_markup(GTK_LABEL(status_label), "<span foreground='red'>Invalid Username or Password (Mock Failure).</span>");
+        gtk_label_set_markup(GTK_LABEL(status_label), "<span foreground='red'>Invalid Username or Password.</span>");
     }
 }
 
@@ -69,12 +75,12 @@ static GtkWidget *create_login_ui(GtkStack *stack, gboolean is_login) {
     gtk_grid_attach(GTK_GRID(grid), title_label, 0, 0, 2, 1);
 
     GtkWidget *username_entry = gtk_entry_new();
-    gtk_entry_set_placeholder_text(GTK_ENTRY(username_entry), "Username (Try 'testuser')");
+    gtk_entry_set_placeholder_text(GTK_ENTRY(username_entry), "Username ");
     gtk_grid_attach(GTK_GRID(grid), gtk_label_new("Username:"), 0, 1, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), username_entry, 1, 1, 1, 1);
 
     GtkWidget *password_entry = gtk_entry_new();
-    gtk_entry_set_placeholder_text(GTK_ENTRY(password_entry), "Password (Try 'password')");
+    gtk_entry_set_placeholder_text(GTK_ENTRY(password_entry), "Password");
     gtk_entry_set_visibility(GTK_ENTRY(password_entry), FALSE);
     gtk_grid_attach(GTK_GRID(grid), gtk_label_new("Password:"), 0, 2, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), password_entry, 1, 2, 1, 1);
@@ -111,6 +117,7 @@ void create_login_window(GtkApplication *app) {
     gtk_window_set_title(GTK_WINDOW(window), "USER LOGIN");
     gtk_window_set_default_size(GTK_WINDOW(window), 500, 450);
     gtk_window_set_resizable(GTK_WINDOW(window), FALSE);
+    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
 
     g_signal_connect(window, "delete-event", G_CALLBACK(on_window_delete_event), NULL);
 
